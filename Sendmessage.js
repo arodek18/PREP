@@ -86,7 +86,8 @@ export default class Sendmessage extends React.Component {
 
                userid:null,
 
-               organizationid:null
+               organizationid:null,
+               orgname:''
 
    
 
@@ -216,6 +217,18 @@ export default class Sendmessage extends React.Component {
         });
 
      });
+
+     AsyncStorage.getItem('orgname',(err,result)=>{
+
+        this.setState({
+    
+          orgname: result.replace(/['"]+/g, '')
+    
+      }, function(){
+    
+     });
+    
+    });
 
     }
 

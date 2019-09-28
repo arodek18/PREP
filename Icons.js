@@ -68,7 +68,8 @@ constructor(props){
 
            safeguard_org:'',
 
-           safeguard_org_loading:true
+           safeguard_org_loading:true,
+           orgname:''
 
        };
 
@@ -88,11 +89,22 @@ AsyncStorage.getItem('safeguard_org',(err,result)=>{
 
   }, function(){
 
- 
-
     // console.log(this.state.safeguard_school);
 
   });
+
+});
+
+
+AsyncStorage.getItem('orgname',(err,result)=>{
+
+    this.setState({
+
+      orgname: result.replace(/['"]+/g, '')
+
+  }, function(){
+
+ });
 
 });
 
@@ -184,7 +196,7 @@ return (
 
                         <Text style={styles.logoText}>
 
-                            Arodek
+                            {this.state.orgname}
 
                         </Text>
 

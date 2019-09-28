@@ -272,6 +272,8 @@ export default class Login extends React.Component {
 
          }),() =>{
 
+      AsyncStorage.setItem('orgname', JSON.stringify(response.organization_details.name),() =>{    
+
       AsyncStorage.setItem('organization_details', JSON.stringify(response.organization_details.messaging_enabled),() =>{    
 
       AsyncStorage.setItem('session', JSON.stringify(response.user_details),() =>{
@@ -284,6 +286,7 @@ export default class Login extends React.Component {
      });
      });
      });
+    });
 
   
 

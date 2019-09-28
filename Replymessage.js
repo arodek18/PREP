@@ -83,7 +83,8 @@ constructor(props){
 
         userid:null,
 
-        organizationid:null
+        organizationid:null,
+        orgname:''
 
        };
 
@@ -226,6 +227,18 @@ this.setState({
         });
 
      });
+
+     AsyncStorage.getItem('orgname',(err,result)=>{
+
+      this.setState({
+  
+        orgname: result.replace(/['"]+/g, '')
+  
+    }, function(){
+  
+   });
+  
+  });
 
     }
 

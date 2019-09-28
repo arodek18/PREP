@@ -36,7 +36,8 @@ export default class Charts extends React.Component {
                safeguard_org_loading:true,
                safeguard_charts_id:'',
                safeguard_charts_id_loading:'',
-               collectionid:''
+               collectionid:'',
+               orgname:''
            };
         }
   }
@@ -59,6 +60,18 @@ export default class Charts extends React.Component {
       });
 
     })
+
+    AsyncStorage.getItem('orgname',(err,result)=>{
+
+      this.setState({
+
+        orgname: result.replace(/['"]+/g, '')
+
+    }, function(){
+
+   });
+
+ });
 
   }
 
@@ -196,7 +209,7 @@ export default class Charts extends React.Component {
 
                                 <Text style={styles.logoText}>
 
-                                    Arodek
+                                    {this.state.orgname}
 
                                 </Text>
 

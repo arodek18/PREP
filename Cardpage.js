@@ -33,6 +33,7 @@ export default class Cardpage extends React.Component {
         addNoteText: '',
         staticData: {},
         isIncident: false,
+        orgname:''
     };
 
     async componentDidMount() {
@@ -50,6 +51,19 @@ export default class Cardpage extends React.Component {
                 }
             });
         }
+
+
+        AsyncStorage.getItem('orgname',(err,result)=>{
+
+            this.setState({
+  
+              orgname: result.replace(/['"]+/g, '')
+  
+          }, function(){
+  
+         });
+  
+       });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -315,7 +329,7 @@ export default class Cardpage extends React.Component {
                                     </View>
                                     <View style={{paddingLeft: 5, marginTop: 3,}}>
                                         <Text style={styles.logoText}>
-                                            Arodek
+                                            {this.state.orgname}
                                         </Text>
                                     </View>
                                 </Fragment>

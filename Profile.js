@@ -182,7 +182,8 @@ export default class Profile extends React.Component {
 
             userid:null,
 
-            organizationid:null
+            organizationid:null,
+            orgname:''
 
            };
 
@@ -227,6 +228,17 @@ componentDidMount(){
    });
 
  
+   AsyncStorage.getItem('orgname',(err,result)=>{
+
+    this.setState({
+
+      orgname: result.replace(/['"]+/g, '')
+
+  }, function(){
+
+ });
+
+});
 
  
 
@@ -384,7 +396,7 @@ underlayColor='#fff'>
 
 <Text style={styles.logoText}>
 
-arodek
+{this.state.orgname}
 
 </Text>
 

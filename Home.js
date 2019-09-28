@@ -6,71 +6,36 @@ import { createStackNavigator, createAppContainer, createSwitchNavigator } from 
  
 
 import { Icon } from 'react-native-elements';
-
- 
-
 import AsyncStorage from '@react-native-community/async-storage';
-
- 
-
 import { Fonts } from './src/utils/Fonts';
-
- 
-
 import {  Button,ScrollView,props,ActivityIndicator,FlatList, Alert} from 'react-native';
 
- 
-
 import { List, ListItem } from "react-native-elements";
-
- 
-
 import LinearGradient from 'react-native-linear-gradient';
 
- 
 
 const MyStatusBar = ({backgroundColor, ...props}) => (
 
- 
-
     <View style={[styles.statusBar, { backgroundColor }]}>
-
- 
 
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
 
- 
-
     </View>
-
- 
 
   );
 
  
-
-
- 
-
   export default class Home extends React.Component {
 
  
 
     constructor(props){
 
- 
-
       super(props)
-
- 
 
       {
 
- 
-
          this.state={
-
- 
 
              collections:'',
 
@@ -102,7 +67,8 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
              loderview:'',
 
-             logindetais:''
+             logindetais:'',
+             orgname:''
 
          };
 
@@ -177,22 +143,14 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
        AsyncStorage.getItem('Logindetails',(err,result)=>{
 
-   
-
         this.setState({
-
- 
 
              logindetais:result,
 
- 
 
       }, function(){
 
-        
-
-     
-
+    
         this. submit();
 
      });
@@ -203,36 +161,19 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
  
 
-    //   AsyncStorage.getItem('safeguard',(err,result)=>{
+      AsyncStorage.getItem('orgname',(err,result)=>{
 
- 
+          this.setState({
 
-    //       this.setState({
+            orgname: result.replace(/['"]+/g, '')
 
- 
+        }, function(){
 
-    //       isLoading: false,
+       });
 
- 
-
-    //       dataSource: JSON.parse(result).collections,
-
- 
-
-    //     }, function(){
-
- 
-
-    //    });
-
- 
-
-    //  });
-
- 
+     });
 
 
- 
 
     //  AsyncStorage.getItem('safeguard_org',(err,result)=>{
 
@@ -289,9 +230,6 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
      {
 
  
-
-      
-
          fetch(global.api_url,
 
 
@@ -324,18 +262,7 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
      .then((response)=>{
 
-
-     
-
- 
-
       const status=response.status;
-
-
-     
-
- 
-
       if(status === "true")
 
 
@@ -353,15 +280,8 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
                  dataSource:JSON.parse(JSON.stringify(response.safeguard)).collections,
 
- 
 
                 },function(){
-
- 
-
-                   
-
-                 
 
                 })
 
@@ -390,17 +310,10 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
 
      console.log(error);
-
-
      this.getofflinedata();
 
 
    });
-
-
-  
-
- 
 
    }
 
@@ -421,13 +334,7 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
             },function(){
 
-           
-
- 
-
             })
-
-  
 
         });
 
@@ -439,13 +346,9 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
         this.setState({
 
- 
-
         loderview:true,   
 
         isLoading: false,
-
- 
 
         dataSource: JSON.parse(result).collections,
 
@@ -722,11 +625,8 @@ this.props.navigation.navigate('Login');
 
                         <Text style={styles.logoText}>
 
- 
 
-                            Arodek
-
- 
+                          {this.state.orgname}
 
                         </Text>
 

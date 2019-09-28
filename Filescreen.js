@@ -3,8 +3,6 @@ import React from 'react';
 import { StyleSheet, Text, Linking, View, Button,ActivityIndicator,Alert,Image, TouchableOpacity, FlatList,  TouchableWithoutFeedback,
 Navigate, ScrollView,Dimensions, Platform, StatusBar, WebView } from 'react-native';
 
- 
-
 import { createStackNavigator, createAppContainer, createSwitchNavigator, createMaterialTopTabNavigator, props }
 
 from 'react-navigation';
@@ -35,8 +33,6 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
     <StatusBar translucent backgroundColor={backgroundColor} {...props} />
 
- 
-
   </View>
 
  
@@ -61,33 +57,16 @@ header:null,
 
 };
 
-
-
-
 constructor(props){
-
- 
 
     super(props)
 
- 
-
     {
-
- 
 
       this.state={
 
- 
-
         collections:'',
-
- 
-
         title:'',
-
- 
-
         safeguard_folder:'',
 
         safeguard_collection:'',
@@ -108,7 +87,7 @@ constructor(props){
 
         safeguard_org:'',
 
- 
+        orgname:'',
 
         safeguard_org_loading:true,
 
@@ -319,12 +298,17 @@ this.props.navigation.navigate('Login');
 
 componentDidMount(){
 
+  AsyncStorage.getItem('orgname',(err,result)=>{
 
+    this.setState({
 
+      orgname: result.replace(/['"]+/g, '')
 
+  }, function(){
 
+ });
 
-
+});
 
 //   AsyncStorage.getItem('safeguard',(err,results)=>{
 
@@ -618,12 +602,7 @@ componentDidMount(){
 
    AsyncStorage.getItem('safeguard',(err,safeguard_links)=>{
 
-
-
-
       let safeguarddata=JSON.parse(safeguard_links);
-
- 
 
         this.setState({
 
@@ -1090,7 +1069,7 @@ render() {
 
  
 
-      onPress={ ()=>{ Linking.openURL(global.api_url+'/'+item.url)}}
+      onPress={ ()=>{ Linking.openURL("https://prephc.com"+item.url)}}
 
  
 
@@ -1364,37 +1343,21 @@ return (
 
                     <View style={{paddingLeft: 5, marginTop: 3,}}>
 
- 
-
                         <Text style={styles.logoText}>
 
- 
-
-                            Arodek
-
- 
+                           {this.state.orgname}
 
                         </Text>
 
- 
-
                     </View>
-
- 
 
                 </View>
 
-            </TouchableOpacity>
-
- 
+            </TouchableOpacity> 
 
         </View>
 
- 
-
         <View style={styles.rightnav}>
-
- 
 
             <TouchableOpacity
 
