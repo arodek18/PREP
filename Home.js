@@ -66,9 +66,9 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
              userpassword:'',
 
              loderview:'',
-
              logindetais:'',
-             orgname:''
+             orgname:'',
+             messageshow:true
 
          };
 
@@ -93,14 +93,9 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
         //     },function(){
 
-           
-
- 
-
+        
+        //         alert(this.state.details);
         //     })
-
-  
-
         // });
 
         // const { navigation } = this.props;
@@ -276,16 +271,15 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
                   isLoading: false,
 
-                 details:JSON.stringify(response.organization_details.messaging_enabled.replace(/['"]+/g, '')),
+                 details:JSON.stringify(response.organization_details.messaging_enabled).replace(/['"]+/g, ''),
 
                  dataSource:JSON.parse(JSON.stringify(response.safeguard)).collections,
 
 
                 },function(){
 
-                })
 
-        
+                })        
 
       }
 
@@ -753,48 +747,23 @@ this.props.navigation.navigate('Login');
           <View style={styles.mainsection}>
 
  
-
-      
-
-         
-
- 
-
-           { this.state.details === "1" ?
+           { this.state.details === '1' ?
 
  
 
             <View style={styles.btnBg1}>
 
- 
-
-           
-
- 
-
                 <View style={styles.btncont1}>
-
- 
 
                     <TouchableOpacity
 
- 
-
                     style={styles.loginScreenButton}
-
- 
 
                     onPress={() => this.props.navigation.navigate('Emergency')}
 
- 
-
                     underlayColor='#fff'>
 
- 
-
                     {/* <Text style={styles.loginText}>EMERGENCY</Text> */}
-
- 
 
                         <LinearGradient
 
@@ -890,7 +859,7 @@ this.props.navigation.navigate('Login');
 
  
 
-              { this.state.details === "1"  ?
+              { this.state.details === '1' ?
 
  
 
