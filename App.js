@@ -141,7 +141,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-global.api_url = 'http://13.232.30.205/merpapi/api.php';
+global.api_url = 'https://safeguardrisksolutionapi.com/api.php';
 
 const RootStack = createSwitchNavigator(
   {
